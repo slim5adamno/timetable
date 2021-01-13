@@ -63,6 +63,7 @@ include "includes/sidebar.php";
                                                     </select>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                                 <label>Select Semester</label>
