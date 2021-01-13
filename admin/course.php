@@ -131,7 +131,7 @@ include "includes/sidebar.php";
 
 
                                     $return = pg_query($db, $sql);
-                                    if(!$return) {
+                                    if(!$ret) {
                              echo pg_last_error($db);
                                     } else {
                         $id =pg_fetch_row($return);

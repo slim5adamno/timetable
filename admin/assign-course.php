@@ -39,7 +39,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-12">
                                        
                                             <div class="form-group">
-                                                <label>Select Department</label>
+                                                <label>Select Deaprtment</label>
                                                 <select class="form-control" id="tdepartment" name="TDP" required>
                                                     <?php
 
@@ -63,7 +63,6 @@ include "includes/sidebar.php";
                                                     </select>
                                             </div>
                                         </div>
-
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                                 <label>Select Semester</label>

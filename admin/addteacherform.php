@@ -34,8 +34,8 @@ $ret = pg_query($db, $sql);
 if(!$ret) {
    echo pg_last_error($db);
 } else {
-
-
+    
+       
         header("Location:add-lecturer.php");
     
   

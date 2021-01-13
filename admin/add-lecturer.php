@@ -51,7 +51,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="teacheremailid">Email-ID</label>
-                            <input type="email" class="form-control" id="teacheremailid" name="TE" placeholder="abc@gmail.com ..." required>
+                            <input type="text" class="form-control" id="teacheremailid" name="TE" placeholder="abc@gmail.com ..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">  
@@ -98,8 +98,7 @@ include "includes/sidebar.php";
                                         </div>
                                         <div class="col-md-12">  
                                             <div class="form-group">
-                                               <button class="btn btn-block btn-info rounded-0" name="register">Add Lecturer</button>
-
+                                               <button class="btn btn-block btn-info rounded-0" name="register">Add Lecturer</button> 
                                             </div>
                                         </div>
                                     </div>

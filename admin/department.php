@@ -87,6 +87,7 @@ include "includes/sidebar.php";
                                                     while ($row = pg_fetch_row($ret)) {
                                                         echo "<tr><th scope=\"row\">{$row[0]}</th>
                                                         <td>{$row[1]}</td>"; ?>
+
                                                        
                                                         <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
