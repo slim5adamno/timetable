@@ -53,7 +53,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-12">
                                        
                                             <div class="form-group">
-                                                <label>Select Deaprtment</label>
+                                                <label>Select Department</label>
                                                 <select class="form-control" id="tdepartment" name="TDP" required>
                                                     <?php
 
