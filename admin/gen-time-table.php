@@ -3,15 +3,21 @@ include "includes/header.php";
 include "includes/sidebar.php";
 ?>
 <?php
+
+    if (session_status() == PHP_SESSION_NONE) {
     session_start();
-    if(isset($_POST['TDP']) && isset($_POST['SEM'])) {
+}
+
+if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY'])) {
         $_SESSION['dept']=$_POST['TDP'];
         $_SESSION['sem']=$_POST['SEM'];
+        $_SESSION['day']=$_POST['DAY'];
     }
     else{
     
     $_POST['TDP']=$_SESSION['dept'];
         $_POST['SEM']=$_SESSION['sem'];
+        $_POST['DAY'] = $_SESSION['day'];
     }
 ?>
 
@@ -134,12 +140,16 @@ include "includes/sidebar.php";
                                             <div class="form-group">
                                             <label for="tslot">Time Slot</label>
 
-                                            <select class="form-control" id="tslot" name="TS" required >
+                                            <select class="form-control" id="tslot" name="TS" required>
                                             <?php
 
 
                                             include 'connection.php';
-                                            $sql="select * from timeslot";
+                                            $dp="'$_SESSION[dept]'";
+                                            $se="'$_SESSION[sem]'";
+                                            $da = "'$_SESSION[day]'";
+                                            $sql="select * from timeslot where time not in (select timeslot from allot where allot.day =$da and semester=$se and did=(select did from department where name=$dp));";
+                                            //$sql = "select * from timeslot where time not in (select timeslot from allot where did =$dp and semester='$se' and allot.day = $da);";
 
                                             $ret=pg_query($db,$sql);
                                             if(!$ret) {
@@ -157,7 +167,8 @@ include "includes/sidebar.php";
                                             </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-12">  
+                                        <!--
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                             <label for="day">Day</label>
                                         <select class="form-control" id="day" name="DAY" required >
@@ -170,6 +181,7 @@ include "includes/sidebar.php";
                                         </select>
                                             </div>
                                         </div>
+                                        -->
                                        
                                         <div class="col-md-12">  
                                             <div class="form-group">
@@ -207,6 +219,7 @@ include "includes/sidebar.php";
                      
                         $dp="'$_SESSION[dept]'";
                         $se="'$_SESSION[sem]'";
+                        $da = "'$_SESSION[day]'";
                        
 
                        $sql = "Select * from allot where did=(select did from department where name=$dp ) and semester=$se order by day";
@@ -230,7 +243,7 @@ include "includes/sidebar.php";
                         <td>{$sid[0]}</td>
                         <td>{$tid[0]}</td>
                         <td>{$row[4]}</td>" ?>
-                        <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $row[6]?>&tslot=<?php echo $row[5]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td                       
+                        <td><a href="delete_ttable.php?dept_name=<?php echo $_SESSION['dept']?>&sem=<?php echo $_SESSION['sem']?>&sid=<?php echo $row[2]?>&tid=<?php echo $row[3]?>&day=<?php echo $_SESSION['day']?>&tslot=<?php echo $row[5]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td
                       </tr>
                        <?php
                         }

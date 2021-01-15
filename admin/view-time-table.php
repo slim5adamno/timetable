@@ -101,32 +101,34 @@ include "includes/sidebar.php";
                   	 			
                   	 			<table class="table table-bordered content"></center>
 								   <thead >
-								   <?php
-                    
-					include 'connection.php';
+                                       <?php
+                                       include 'connection.php';
+                                       if(isset($_POST['select_department']) && isset($_POST['select_semester'])) {?>
+                                            <center><h2>CLASS TIMETABLE FOR <?php if(isset($_POST['select_department'])){
+                                            echo $_POST['select_department'];
+                                           }?>
+                                                </h2></center>
 
-				   if(isset($_POST['select_department']) && isset($_POST['select_semester'])) {?>
-						<center><h2>CLASS TIMETABLE FOR <?php if(isset($_POST['select_department'])){
-									   echo $_POST['select_department'];
-									   }?> </h2></center>
-                  	 				<center><h2>Semester -: <?php if(isset($_POST['select_semester'])){
-									   echo $_POST['select_semester'];
-									   }?> </h2></center>
+                                           <center><h2>Semester -: <?php if(isset($_POST['select_semester'])){
+                                           echo $_POST['select_semester'];
+                                           }?>
+                                               </h2></center>
 
                     <th style="text-align:center" scope="col">DAYS</th> 
                     <?php
-					$dept=$_POST['select_department'];
+					    $dept=$_POST['select_department'];
 						$sem=$_POST['select_semester'];
                         $dq="select did from department where name='$dept'";
                         $dr=pg_query($db,$dq);
                         $did = pg_fetch_row($dr);
 
-                         $sql="select timeslot from allot where  did=$did[0] and semester='$sem' and day='Monday'";
+                       //  $sql="select timeslot from allot where  did=$did[0] and semester='$sem' and day='Monday'";
+                         $sql="select time from timeslot";
                          $t=pg_query($db,$sql);
                         $ts=pg_fetch_all($t);
                         for($i=0;$i<count($ts);$i++)
                         {
-                            $t= $ts[$i]['timeslot'];
+                            $t= $ts[$i]['time'];
                             echo "<th style=\"text-align:center\" scope=\"col\">$t</th>";
                         }
                      
@@ -137,15 +139,21 @@ include "includes/sidebar.php";
 					   
 					   
                     ?>
+
 					<?php
-					 if(isset($_POST['TS']) && isset($_POST['DAY'])) {?>
-						<center><h2>SCHEDULE FOR <?php if(isset($_POST['DAY'])){
+                        if(isset($_POST['TS']) && isset($_POST['DAY'])) {?>
+						    <center><h2>SCHEDULE FOR
+
+
+                    <?php if(isset($_POST['DAY'])){
 							echo $_POST['DAY'];
-							}?> 
-							</h2></center>
-							<center><h2>TIMESLOT -: <?php if(isset($_POST['TS'])){
+					}?>
+                            </h2></center>
+							<center><h2>TIMESLOT -:
+                    <?php if(isset($_POST['TS'])){
 							echo $_POST['TS'];
-							}?> </h2></center>
+					}?>
+                            </h2></center>
 					<?php }
 					 ?>
 
@@ -159,7 +167,7 @@ include "includes/sidebar.php";
                     
                     include 'connection.php';
 
-                   if(isset($_POST['select_department']) && isset($_POST['select_semester'])) {
+                  /* if(isset($_POST['select_department']) && isset($_POST['select_semester'])) {
                         $dept=$_POST['select_department'];
                         $sem=$_POST['select_semester'];
                         $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
@@ -187,9 +195,57 @@ include "includes/sidebar.php";
                        echo "</tr>";
                        }
                     
-                    
-					  }
-					  
+
+					  }*/
+
+                    if(isset($_POST['select_department']) && isset($_POST['select_semester'])) {
+                        $dept = $_POST['select_department'];
+                        $sem = $_POST['select_semester'];
+                        $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+                        $times = array('7:30-10:30', '11:00-11:50', '11:50-12:40', '12:40-1:30', '1:50-2:40', '2:40-5:00');
+
+                        for($i=0;$i<count($days);$i++){
+                            echo "<tr><th>$days[$i]</th>";
+                            $time_query = "select timeslot,sname from allot,subjects where allot.did = (select did from department where name='$dept') and allot.semester='$sem' and day='$days[$i]' and allot.sid = subjects.sid";
+                            $ret = pg_query($db,$time_query);
+                            $ret_arr = pg_fetch_all($ret);
+
+                            if(pg_num_rows($ret) == 0) {
+                                for($j=0;$j<count($times);$j++) {
+                                    echo "<td style=\"text-align:center\" scope=\"row\">--</td>";
+                                }
+                            }
+                            else {
+
+                                $counter=0;
+
+                                $position = array_search($ret_arr[$counter]['timeslot'], $times);
+
+                                for($j=0;$j<count($times);$j++) {
+                                    if ($j < $position) {
+                                        echo "<td style=\"text-align:center\" scope=\"row\">--</td>";
+
+                                    } else if ($j == $position) {
+                                        $sub = $ret_arr[$counter]['sname'];
+
+                                        echo "<td style=\"text-align:center\" scope=\"row\">$sub</td>";
+                                        $counter++;
+                                        if($counter < pg_num_rows($ret)) {
+                                            $position = array_search($ret_arr[$counter]['timeslot'], $times);
+                                        }
+
+                                }
+                                    else {
+                                        echo "<td style=\"text-align:center\" scope=\"row\">--</td>";
+                                    }
+
+                                }
+                            }
+                            echo "</tr>";
+                        }
+
+                    }
+
 					  if(isset($_POST['TS']) && isset($_POST['DAY'])) {?>
 						
 						<table id="basic-datatable" class="table dt-responsive nowrap">

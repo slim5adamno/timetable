@@ -1,16 +1,17 @@
 <?php
-
-session_start();
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 include 'connection.php';
-if (isset($_POST['SN']) && isset($_POST['TN']) && isset($_POST['CR']) && isset($_POST['TS']) && isset($_POST['DAY'])) {
+if (isset($_POST['SN']) && isset($_POST['TN']) && isset($_POST['CR']) && isset($_POST['TS'])) {
     $sname = $_POST['SN'];
     $tname = $_POST['TN'];
 	$class= $_POST['CR'];
 	$timeslot=$_POST['TS'];
-	$day= $_POST['DAY'];
+	$day= $_SESSION['day'];
 	$dept=$_SESSION['dept'];
 	$sem=$_SESSION['sem'];
+
 	echo"Connected";
 } else {
 
