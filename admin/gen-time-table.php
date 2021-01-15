@@ -229,6 +229,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY'])) {
                             echo pg_last_error($db);
                             exit;
                         }
+
                         while ($row = pg_fetch_row($ret)) {
                             $sq= "select sname from subjects where sid=$row[2]";
                             $tq="select name from teacher where tid=$row[3]";
