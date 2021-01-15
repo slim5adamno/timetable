@@ -206,7 +206,7 @@ include "includes/sidebar.php";
 
                         for($i=0;$i<count($days);$i++){
                             echo "<tr><th>$days[$i]</th>";
-                            $time_query = "select timeslot,sname from allot,subjects where allot.did = (select did from department where name='$dept') and allot.semester='$sem' and day='$days[$i]' and allot.sid = subjects.sid";
+                            $time_query = "select timeslot,sname,name from allot,subjects,teacher where allot.did = (select did from department where name='$dept') and allot.semester='$sem' and day='$days[$i]' and allot.sid = subjects.sid and allot.tid=teacher.tid";
                             $ret = pg_query($db,$time_query);
                             $ret_arr = pg_fetch_all($ret);
 
@@ -227,8 +227,10 @@ include "includes/sidebar.php";
 
                                     } else if ($j == $position) {
                                         $sub = $ret_arr[$counter]['sname'];
+                                        $teach = $ret_arr[$counter]['name'];
 
-                                        echo "<td style=\"text-align:center\" scope=\"row\">$sub</td>";
+
+                                        echo "<td style=\"text-align:center\" scope=\"row\">$sub</br>($teach)</td>";
                                         $counter++;
                                         if($counter < pg_num_rows($ret)) {
                                             $position = array_search($ret_arr[$counter]['timeslot'], $times);
