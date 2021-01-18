@@ -136,6 +136,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY'])) {
                                                             </select>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                             <label for="tslot">Time Slot</label>
