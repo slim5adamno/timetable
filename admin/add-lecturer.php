@@ -38,7 +38,7 @@ include "includes/sidebar.php";
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="TF">Faculty No</label>
-                                <input type="text" class="form-control" id="facultyno" name="TF" placeholder="Faculty No ..." required>
+                                <input type="number" class="form-control" id="facultyno" name="TF" placeholder="Faculty No ..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">  
@@ -51,13 +51,13 @@ include "includes/sidebar.php";
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="teacheremailid">Email-ID</label>
-                            <input type="text" class="form-control" id="teacheremailid" name="TE" placeholder="abc@gmail.com ..." required>
+                            <input type="email" class="form-control" id="teacheremailid" name="TE" placeholder="abc@gmail.com ..." required>
                                             </div>
                                         </div>
                                         <div class="col-md-6">  
                                             <div class="form-group">
                                             <label for="teachercontactnumber">Contact No.</label>
-                            <input type="text" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " required>
+                            <input type="tel" class="form-control" id="teachercontactnumber" name="TP" placeholder="+91 " minlength="10" maxlength="10" pattern="[0][6-9]{1}[0-9]{9}" required>
                                             </div>
                                         </div>
                       
@@ -110,6 +110,8 @@ include "includes/sidebar.php";
                 </div> <!-- end col -->
             </div>
             <!-- end row -->
+
+
         </div> <!-- container -->
 
     </div> <!-- content -->

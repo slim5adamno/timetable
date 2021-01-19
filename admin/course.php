@@ -76,11 +76,14 @@ include "includes/sidebar.php";
                         </select>
                                             </div>
                                         </div>
+                                        <!---// TODO For ug, FY, SY, TY , For pg: FY, SY-->
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                                 <label>Semester</label>
                                                 <select class="form-control" id="semester" name="SEM" required>
                                                     <option selected disabled>Select</option>
+
+
                                                     <option value="FY">FY</option>
                                                     <option value="SY">SY</option>
                                                     <option value="TY">TY</option>
@@ -112,6 +115,8 @@ include "includes/sidebar.php";
                                         <th scope="col">Subject Name</th>
                                         <th scope="col">Semester</th>
                                         <th scope="col">Department</th>
+                                        <th scope="col">Stream</th>
+                                        <th scope="col">UG/PG</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -127,7 +132,7 @@ include "includes/sidebar.php";
                         }
                         while ($row = pg_fetch_row($ret)) {
                            
-                                $sql="select name from department where did=$row[3]";
+                                $sql="select name,course,stream from department where did=$row[3]";
 
 
                                     $return = pg_query($db, $sql);
@@ -141,7 +146,9 @@ include "includes/sidebar.php";
                             echo "<tr><th scope=\"row\">{$row[0]}</th>
                         <td>{$row[1]}</td>
                         <td>{$row[2]}</td>
-                        <td>{$id[0]}</td>" ?>
+                        <td>{$id[0]}</td>
+                        <td>{$id[2]}</td>
+                        <td>{$id[1]}</td>" ?>
                         
                  
 

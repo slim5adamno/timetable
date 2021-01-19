@@ -41,17 +41,30 @@ include "includes/sidebar.php";
                                                 <div class="col-md-15">
                                                     <div class="form-group">
                                                         <label>Course Type</label>
-                                                        <select class="form-control" name="CourseType">
-                                                            <option selected="" disabled="">Select Designation</option>
+                                                        <select class="form-control" name="StreamType" required>
+                                                            <option selected="" disabled="">Select Stream</option>
+                                                            <option value="SCIENCE">Science</option>
+                                                            <option value="ARTS">Arts</option>
+                                                            <option value="COMMERCE">Commerce</option>
+                                                            <option value="VOCATIONAL">Vocational</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-15">
+                                                    <div class="form-group">
+                                                        <label>Course Type</label>
+                                                        <select class="form-control" name="CourseType" required>
+                                                            <option selected="" disabled="">Select Course Type</option>
                                                             <option value="UG">UG</option>
                                                             <option value="PG">PG</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <label>Department Number</label>
-                                                <input type="text" class="form-control" name="DeptNo" placeholder="">
+                                                <input type="number" class="form-control" name="DeptNo" placeholder="" min="1" required>
                                                 <label>Department Title</label>
-                                                <input type="text" class="form-control" name="DeptName" placeholder="">
+                                                <input type="text" class="form-control" name="DeptName" placeholder="" required>
                                             </div>
                                         </div>
                                         <div class="col-md-12">  
@@ -75,10 +88,11 @@ include "includes/sidebar.php";
                             <table id="basic-datatable" class="table dt-responsive nowrap">
                                 <thead>
                                     <tr>
-                                        <th >Department No.</th>
-                                         <th >Department Name</th>
-                                        <th> Course Type</th>
-                                         <th >Action</th>
+                                        <th>Department No.</th>
+                                         <th>Department Name</th>
+                                        <th>Course Type</th>
+                                        <th>Stream</th>
+                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
@@ -94,7 +108,7 @@ include "includes/sidebar.php";
                                                             }
                                                     while ($row = pg_fetch_row($ret)) {
                                                         echo "<tr><th scope=\"row\">{$row[0]}</th>
-                                                        <td>{$row[1]}</td><td>{$row[2]}</td>"; ?>
+                                                        <td>{$row[1]}</td><td>{$row[2]}</td><td>{$row[3]}</td>"; ?>
 
                                                        
                                                         <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
