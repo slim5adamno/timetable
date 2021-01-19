@@ -43,6 +43,10 @@ include "includes/sidebar.php";
                                     <th scope="col">Department</th>
                                     <th scope="col">Contact No.</th>
                                     <th scope="col">Email ID</th>
+
+                                    <th scope="col">Course Type</th>
+                                    <th scope="col">Stream</th>
+
                                     <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -59,7 +63,7 @@ include "includes/sidebar.php";
                         }
                         while ($row = pg_fetch_row($ret)) {
                            
-                                $sql="select name from department where did=$row[5]";
+                                $sql="select name,course,stream from department where did=$row[5]";
 
                                     $return = pg_query($db, $sql);
                                     if(!$return) {
@@ -74,7 +78,9 @@ include "includes/sidebar.php";
                         <td>{$row[2]}</td>
                         <td>{$id[0]}</td>
                         <td>{$row[3]}</td>
-                        <td>{$row[4]}</td>"; ?>  
+                        <td>{$row[4]}</td>
+                        <td>{$id[1]}</td>
+                        <td>{$id[2]}</td>"; ?>
                        <td><a href="deleteteacher.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
                         <?php
