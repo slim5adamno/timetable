@@ -2,10 +2,10 @@
 
 include 'connection.php';
 if (isset($_POST['TF']) && isset($_POST['TN']) && isset($_POST['TD']) && isset($_POST['TDP']) && isset($_POST['TP']) && isset($_POST['TE'])) {
-    $name = $_POST['TN'];
+    $name = strtoupper($_POST['TN']);
     $facno = $_POST['TF'];
-    $designation = $_POST['TD'];
-    $department = $_POST['TDP'];
+    $designation = strtoupper($_POST['TD']);
+    $course = strtoupper($_POST['TDP']);
     $contact = $_POST['TP'];
     $email = $_POST['TE'];
 } else {
@@ -15,7 +15,7 @@ if (isset($_POST['TF']) && isset($_POST['TN']) && isset($_POST['TD']) && isset($
 
 
   
-$sql="select did from department where name='$department'"; 
+$sql="select * from course where cname='$course'";
 
 
 $ret = pg_query($db, $sql);
@@ -27,7 +27,7 @@ if(!$ret) {
 }
 
 
-$sql="insert into teacher values  ($facno,'$name','$designation','$contact','$email',$id[0])";
+$sql="insert into teacher values($facno,'$name','$designation','$contact','$email','$id[3]',$id[0])";
 
 
 $ret = pg_query($db, $sql);

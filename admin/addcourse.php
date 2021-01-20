@@ -134,7 +134,7 @@ include "includes/sidebar.php";
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive table-bordered text-center nowrap">
                                 <thead>
                                 <tr>
                                     <th>Course No.</th>
@@ -168,7 +168,7 @@ include "includes/sidebar.php";
                                         $id = pg_fetch_row($ret1);
                                     }
                                     echo "<tr><th scope=\"row\">{$row[0]}</th>
-                                                        <td>{$row[1]}</td><td>{$row[2]}</td><td>{$id[1]}</td><td>{$id[3]}</td>"; ?>
+                                                        <td>{$row[1]}</td><td>{$row[2]}</td><td>{$id[1]}</td><td>{$id[2]}</td>"; ?>
 
 
                                     <td><a href="deletecourse.php?course_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>

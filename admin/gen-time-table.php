@@ -204,7 +204,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive table-bordered text-center nowrap">
                                 <thead>
                                     <tr>
                                     <th scope="col">Day</th>
@@ -226,7 +226,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset
                         $stype = "'$_SESSION[stype]'";
                        
 
-                       $sql = "Select * from allot where did=(select did from department where name=$dp ) and semester=$se order by day";
+                       $sql = "Select * from allot where did=(select did from department where name=$dp ) and semester=$se order by LOWER(day)";
                       
                         $ret = pg_query($db, $sql);
                         if (!$ret) {

@@ -61,7 +61,7 @@ include "includes/sidebar.php";
                <div class="col-md-8">
                 <<div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive table-bordered text-center nowrap">
                                 <thead>
                                     <tr>
                                     <th scope="col">Classroom</th>

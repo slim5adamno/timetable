@@ -3,10 +3,10 @@
 include 'connection.php';
 
 if ( !empty($_POST['CourseType']) && !empty($_POST['DeptName']) && !empty($_POST['CourseNo'])&& !empty($_POST['CourseName'])) {
-    $courseName = $_POST['CourseName'];
+    $courseName = strtoupper($_POST['CourseName']);
     $courseNo = $_POST['CourseNo'];
-    $courseType = $_POST['CourseType'];
-    $deptName = $_POST['DeptName'];
+    $courseType = strtoupper($_POST['CourseType']);
+    $deptName = strtoupper($_POST['DeptName']);
 
 } else {
     //header("Location:addcourse.php");

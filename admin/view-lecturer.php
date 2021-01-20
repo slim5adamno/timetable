@@ -27,66 +27,78 @@ include "includes/sidebar.php";
                         <h4 class="page-title">View Lecturer</h4>
                     </div>
                 </div>
-            </div>     
-            <!-- end page title --> 
+            </div>
+            <!-- end page title -->
 
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive table-bordered text-center nowrap">
                                 <thead>
-                                    <tr>
+                                <tr>
                                     <th scope="col">Faculty No.</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Designation</th>
                                     <th scope="col">Department</th>
                                     <th scope="col">Contact No.</th>
                                     <th scope="col">Email ID</th>
-
+                                    <th scope="col">Course Name</th>
                                     <th scope="col">Course Type</th>
+
+
                                     <th scope="col">Stream</th>
 
                                     <th scope="col">Action</th>
-                                    </tr>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                        <?php
-                        include 'connection.php';
+                                <?php
+                                include 'connection.php';
 
-                        $sql = "Select * from teacher order by tid ";
-                               
-                        $ret = pg_query($db, $sql);
-                        if (!$ret) {
-                            echo pg_last_error($db);
-                            exit;
-                        }
-                        while ($row = pg_fetch_row($ret)) {
-                           
-                                $sql="select name,course,stream from department where did=$row[5]";
+                                $sql = "Select * from teacher order by tid ";
+
+                                $ret = pg_query($db, $sql);
+                                if (!$ret) {
+                                    echo pg_last_error($db);
+                                    exit;
+                                }
+                                while ($row = pg_fetch_row($ret)) {
+
+                                    $sql="select name,stream from department where did=$row[5]";
 
                                     $return = pg_query($db, $sql);
                                     if(!$return) {
-                             echo pg_last_error($db);
+                                        echo pg_last_error($db);
                                     } else {
-                        $id =pg_fetch_row($return);
-  
-                                }
+                                        $id =pg_fetch_row($return);
 
-                            echo "<tr><th scope=\"row\">{$row[0]}</th>
+                                    }
+                                    $sql1="select cname,ctype from course where did=$row[5] and cno=$row[6]";
+                                    $return1 = pg_query($db, $sql1);
+                                    if(!$return1) {
+                                        echo pg_last_error($db);
+                                    } else {
+                                        $id1 =pg_fetch_row($return1);
+
+                                    }
+
+                                    echo "<tr><th scope=\"row\">{$row[0]}</th>
                         <td>{$row[1]}</td>
                         <td>{$row[2]}</td>
                         <td>{$id[0]}</td>
                         <td>{$row[3]}</td>
                         <td>{$row[4]}</td>
+                        <td>{$id1[0]}</td>
+                        <td>{$id1[1]}</td>
                         <td>{$id[1]}</td>
-                        <td>{$id[2]}</td>"; ?>
-                       <td><a href="deleteteacher.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                        "; ?>
+                                    <td><a href="deleteteacher.php?d_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
 
-                        <?php
-                        }
-                        pg_close($db);
-                        ?>
+                                    <?php
+                                }
+                                pg_close($db);
+                                ?>
                                 </tbody>
                             </table>
 

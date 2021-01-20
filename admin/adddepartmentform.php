@@ -3,9 +3,10 @@
 include 'connection.php';
 error_reporting(0);
 if ( !empty($_POST['DeptName']) && !empty($_POST['DeptNo']) && !empty($_POST['StreamType'])) {
-    $name = $_POST['DeptName'];
+    $name = strtoupper($_POST['DeptName']);
     $dno = $_POST['DeptNo'];
-    $streamType = $_POST['StreamType'];
+    $streamType = strtoupper($_POST['StreamType']);
+
    
 } else {
     header("Location:department.php");

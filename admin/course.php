@@ -120,7 +120,7 @@ include "includes/sidebar.php";
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <table id="basic-datatable" class="table dt-responsive nowrap">
+                            <table id="basic-datatable" class="table dt-responsive table-bordered text-center nowrap">
                                 <thead>
                                     <tr>
                                         <th scope="col">Subject code</th>
@@ -128,7 +128,6 @@ include "includes/sidebar.php";
                                         <th scope="col">Semester</th>
                                         <th scope="col">Department</th>
                                         <th scope="col">Stream</th>
-                                        <th scope="col">UG/PG</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -144,7 +143,7 @@ include "includes/sidebar.php";
                         }
                         while ($row = pg_fetch_row($ret)) {
                            
-                                $sql="select name,course,stream from department where did=$row[3]";
+                                $sql="select name,stream from department where did=$row[3]";
 
 
                                     $return = pg_query($db, $sql);
@@ -159,8 +158,8 @@ include "includes/sidebar.php";
                         <td>{$row[1]}</td>
                         <td>{$row[2]}</td>
                         <td>{$id[0]}</td>
-                        <td>{$id[2]}</td>
-                        <td>{$id[1]}</td>" ?>
+                        <td>{$id[1]}</td>
+                        " ?>
                         
                  
 

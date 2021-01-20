@@ -249,7 +249,7 @@ include "includes/sidebar.php";
 
 					  if(isset($_POST['TS']) && isset($_POST['DAY'])) {?>
 						
-						<table id="basic-datatable" class="table dt-responsive nowrap">
+						<table id="basic-datatable" class="table dt-responsive table-bordered text-center nowrap">
                                 <thead>
                                     <tr>
                                     <th scope="col">Department</th>

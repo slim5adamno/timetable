@@ -18,7 +18,7 @@ if(!$ret) {
 } else {
     
        
-        header("Location:view-lecturer.php");
+        header("Location:add-lecturer.php");
     
 }
 
