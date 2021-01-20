@@ -49,6 +49,18 @@ include "includes/sidebar.php";
                                             <input type="text" class="form-control" id="subjectname" name="SN" placeholder="Subject's Name ...">
                                             </div>
                                              </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Subject Type</label>
+                                                <select class="form-control" id="semester" name="STYPE" required>
+                                                    <option selected disabled>Select</option>
+
+
+                                                    <option value="THEORY">THEORY</option>
+                                                    <option value="PRACTICAL">PRACTICAL</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                                 <label>Department</label>

@@ -8,16 +8,18 @@ include "includes/sidebar.php";
     session_start();
 }
 
-if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY'])) {
+if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset($_POST['STYPE'])) {
         $_SESSION['dept']=$_POST['TDP'];
         $_SESSION['sem']=$_POST['SEM'];
         $_SESSION['day']=$_POST['DAY'];
+        $_SESSION['stype']=$_POST['STYPE'];
     }
     else{
     
     $_POST['TDP']=$_SESSION['dept'];
         $_POST['SEM']=$_SESSION['sem'];
         $_POST['DAY'] = $_SESSION['day'];
+        $_POST['STYPE']=$_SESSION['stype'];
     }
 ?>
 
@@ -64,7 +66,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY'])) {
 
 
                                                 include 'connection.php';
-                                                $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]'";
+                                                $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]' and stype='$_SESSION[stype]'";
 
                                                 $ret=pg_query($db,$sql);
                                                 if(!$ret) {
@@ -221,6 +223,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY'])) {
                         $dp="'$_SESSION[dept]'";
                         $se="'$_SESSION[sem]'";
                         $da = "'$_SESSION[day]'";
+                        $stype = "'$_SESSION[stype]'";
                        
 
                        $sql = "Select * from allot where did=(select did from department where name=$dp ) and semester=$se order by day";

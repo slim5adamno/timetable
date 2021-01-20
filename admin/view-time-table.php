@@ -99,7 +99,7 @@ include "includes/sidebar.php";
                   	 		<div id="content" class="col-md-12">
 							   
                   	 			
-                  	 			<table class="table table-bordered content"></center>
+                  	 			<table class="table table-bordered table-sm content"></center>
 								   <thead >
                                        <?php
                                        include 'connection.php';
@@ -121,7 +121,6 @@ include "includes/sidebar.php";
                         $dq="select did from department where name='$dept'";
                         $dr=pg_query($db,$dq);
                         $did = pg_fetch_row($dr);
-
                        //  $sql="select timeslot from allot where  did=$did[0] and semester='$sem' and day='Monday'";
                          $sql="select time from timeslot";
                          $t=pg_query($db,$sql);
@@ -202,7 +201,7 @@ include "includes/sidebar.php";
                         $dept = $_POST['select_department'];
                         $sem = $_POST['select_semester'];
                         $days = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
-                        $times = array('7:30-10:30', '11:00-11:50', '11:50-12:40', '12:40-1:30', '1:50-2:40', '2:40-5:00');
+                        $times = array('7:30-8:20','8:20-9:10','9:10-10:00','10:10-11:00','11:00-11:50','11:50-12:40','12:40-1:30','1:50-2:40','2:40-3:30','3:30-4:20','4:20-5:10');
 
                         for($i=0;$i<count($days);$i++){
                             echo "<tr><th>$days[$i]</th>";

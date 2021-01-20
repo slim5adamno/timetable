@@ -88,6 +88,16 @@ include "includes/sidebar.php";
                                                  </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Select Type</label>
+                                                <select class="form-control" id="stype" name="STYPE" required>
+                                                    <option selected disabled>Select</option>
+                                                    <option value="THEORY">Theory</option>
+                                                    <option value="PRACTICAL">Practical</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="col-md-12">  
                                             <div class="form-group">
                                                <button class="btn btn-block btn-info rounded-0" name="add_course">Add Course</button> 

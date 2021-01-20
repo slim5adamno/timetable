@@ -11,6 +11,7 @@ if (isset($_POST['SN']) && isset($_POST['TN']) && isset($_POST['CR']) && isset($
 	$day= $_SESSION['day'];
 	$dept=$_SESSION['dept'];
 	$sem=$_SESSION['sem'];
+	$stype=$_SESSION['stype'];
 
 	echo"Connected";
 } else {
@@ -19,7 +20,7 @@ if (isset($_POST['SN']) && isset($_POST['TN']) && isset($_POST['CR']) && isset($
 
 }
 
-$sq= "select sid from subjects where sname='$sname'";
+$sq= "select sid from subjects where sname='$sname' and stype='$stype'";
 $tq="select tid from teacher where name='$tname'";
 $dq="select did from department where name='$dept'";
 $sr=pg_query($db,$sq);

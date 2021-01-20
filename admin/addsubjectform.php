@@ -1,11 +1,12 @@
 <?php
 
 include 'connection.php';
-if (isset($_POST['SC']) && isset($_POST['SN']) && isset($_POST['SEM']) && isset($_POST['TDP'])) {
+if (isset($_POST['SC']) && isset($_POST['SN']) && isset($_POST['SEM']) && isset($_POST['TDP']) && isset($_POST['STYPE'])) {
     $sname = $_POST['SN'];
     $subcode = $_POST['SC'];
     $sem = $_POST['SEM'];
     $department = $_POST['TDP'];
+    $stype = $_POST['STYPE'];
   
 } else {
 
@@ -26,7 +27,7 @@ if(!$ret) {
 }
 
 
-$sql="insert into subjects values  ('$subcode','$sname','$sem',$id[0])";
+$sql="insert into subjects values  ('$subcode','$sname','$sem',$id[0],'$stype')";
 
 
 
