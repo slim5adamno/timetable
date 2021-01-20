@@ -40,7 +40,7 @@ include "includes/sidebar.php";
                                             <div class="form-group">
                                                 <div class="col-md-15">
                                                     <div class="form-group">
-                                                        <label>Course Type</label>
+                                                        <label>Stream Type</label>
                                                         <select class="form-control" name="StreamType" required>
                                                             <option selected="" disabled="">Select Stream</option>
                                                             <option value="SCIENCE">Science</option>
@@ -61,8 +61,26 @@ include "includes/sidebar.php";
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                <!---// TODO CODE MODIFICATIONS : CHECK AFTER EVERYTHING DONE-->
+                                                <!-- <?php
+                                                /*
+                                                include 'connection.php';
+
+                                                $sql = "Select * from department" ;
+                                                $ret = pg_query($db, $sql);
+                                                if (!$ret) {
+                                                    echo pg_last_error($db);
+                                                    exit;
+                                                }
+                                                $count = pg_num_rows($ret);
+                                                $count++;
+                                                    echo "<label>Department Number</label>
+                                                <input type=\"number\" class=\"form-control\" name=\"DeptNo\" value=\"$count\" placeholder=\"\" min=\"1\" required>";*/ ?>
+                                               -->
                                                 <label>Department Number</label>
-                                                <input type="number" class="form-control" name="DeptNo" placeholder="" min="1" required>
+                                                <input type="number" class="form-control" name="DeptNo" value=" " placeholder="" min="1" required>
+
                                                 <label>Department Title</label>
                                                 <input type="text" class="form-control" name="DeptName" placeholder="" required>
                                             </div>
@@ -106,6 +124,7 @@ include "includes/sidebar.php";
                                                         echo pg_last_error($db);
                                                             exit;
                                                             }
+
                                                     while ($row = pg_fetch_row($ret)) {
                                                         echo "<tr><th scope=\"row\">{$row[0]}</th>
                                                         <td>{$row[1]}</td><td>{$row[2]}</td><td>{$row[3]}</td>"; ?>
