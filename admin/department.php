@@ -51,7 +51,7 @@ include "includes/sidebar.php";
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-15">
+                                                <!--<div class="col-md-15">
                                                     <div class="form-group">
                                                         <label>Course Type</label>
                                                         <select class="form-control" name="CourseType" required>
@@ -60,7 +60,7 @@ include "includes/sidebar.php";
                                                             <option value="PG">PG</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div>-->
 
                                                 <!---// TODO CODE MODIFICATIONS : CHECK AFTER EVERYTHING DONE-->
                                                 <!-- <?php
@@ -108,7 +108,6 @@ include "includes/sidebar.php";
                                     <tr>
                                         <th>Department No.</th>
                                          <th>Department Name</th>
-                                        <th>Course Type</th>
                                         <th>Stream</th>
                                          <th>Action</th>
 
@@ -127,7 +126,7 @@ include "includes/sidebar.php";
 
                                                     while ($row = pg_fetch_row($ret)) {
                                                         echo "<tr><th scope=\"row\">{$row[0]}</th>
-                                                        <td>{$row[1]}</td><td>{$row[2]}</td><td>{$row[3]}</td>"; ?>
+                                                        <td>{$row[1]}</td><td>{$row[2]}</td>"; ?>
 
                                                        
                                                         <td><a href="deletedepartment.php?dept_id=<?php echo $row[0]?>" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
