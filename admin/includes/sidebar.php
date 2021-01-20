@@ -21,6 +21,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="addcourse.php">
+                        <i class="la la-university"></i>
+                        <span> Add Course</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript: void(0);">
                         <i class="la la-user"></i>
                         <span> Lecturer </span>
