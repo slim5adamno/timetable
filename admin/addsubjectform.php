@@ -1,12 +1,13 @@
 <?php
 
 include 'connection.php';
-if (isset($_POST['SC']) && isset($_POST['SN']) && isset($_POST['SEM']) && isset($_POST['TDP']) && isset($_POST['STYPE'])) {
+if (isset($_POST['SC']) && isset($_POST['SN']) && isset($_POST['TNAME']) &&  isset($_POST['SEM']) && isset($_POST['COURSE']) && isset($_POST['STYPE'])) {
     $sname = $_POST['SN'];
     $subcode = $_POST['SC'];
     $sem = $_POST['SEM'];
-    $department = $_POST['TDP'];
+    $course = $_POST['COURSE'];
     $stype = $_POST['STYPE'];
+    $teacher_name = $_POST['TNAME'];
   
 } else {
 

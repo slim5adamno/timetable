@@ -20,10 +20,10 @@ include "includes/sidebar.php";
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                <li class="breadcrumb-item active">Add/Modify Course</li>
+                                <li class="breadcrumb-item active">Add/Modify Subjects</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Add/Modify Course</h4>
+                        <h4 class="page-title">Add/Modify Subjects</h4>
                     </div>
                 </div>
             </div>     
@@ -51,6 +51,33 @@ include "includes/sidebar.php";
                                              </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
+                                                <label>Teacher</label>
+                                                <select class="form-control" id="tname" name="TNAME" required >
+                                                    <?php
+
+
+                                                    include 'connection.php';
+                                                    $sql="select name from teacher ";
+
+
+                                                    $ret=pg_query($db,$sql);
+                                                    if(!$ret) {
+                                                        echo pg_last_error($db);
+                                                        exit;
+                                                    }
+                                                    $string = '<option selected disabled>Select</option>';
+                                                    while($row = pg_fetch_row($ret)) {
+                                                        $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                    }
+                                                    echo $string;
+                                                    pg_close($db);
+                                                    ?>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
                                                 <label>Subject Type</label>
                                                 <select class="form-control" id="semester" name="STYPE" required>
                                                     <option selected disabled>Select</option>
@@ -63,13 +90,13 @@ include "includes/sidebar.php";
                                         </div>
                                         <div class="col-md-12">  
                                             <div class="form-group">
-                                                <label>Department</label>
-                                                <select class="form-control" id="tdepartment" name="TDP" required >
+                                                <label>Course</label>
+                                                <select class="form-control" id="tdepartment" name="COURSE" required >
                                                         <?php
 
 
                                                     include 'connection.php';
-                                                    $sql="select name from department";
+                                                    $sql="select cname from course";
                                                 
 
                                                         $ret=pg_query($db,$sql);
