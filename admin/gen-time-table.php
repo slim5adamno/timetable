@@ -8,11 +8,12 @@ include "includes/sidebar.php";
     session_start();
 }
 
-if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset($_POST['STYPE'])) {
+if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset($_POST['STYPE']) && isset($_POST['COURSE'])) {
         $_SESSION['dept']=$_POST['TDP'];
         $_SESSION['sem']=$_POST['SEM'];
         $_SESSION['day']=$_POST['DAY'];
         $_SESSION['stype']=$_POST['STYPE'];
+        $_SESSION['course']=$_POST['COURSE'];
     }
     else{
     
@@ -20,6 +21,7 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset
         $_POST['SEM']=$_SESSION['sem'];
         $_POST['DAY'] = $_SESSION['day'];
         $_POST['STYPE']=$_SESSION['stype'];
+        $_POST['COURSE']=$_SESSION['course'];
     }
 ?>
 
@@ -40,10 +42,10 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                <li class="breadcrumb-item active">Assign Course</li>
+                                <li class="breadcrumb-item active">Assign Timetable</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Assign Course</h4>
+                        <h4 class="page-title">Assign Timetable</h4>
                     </div>
                 </div>
             </div>     
@@ -66,7 +68,8 @@ if(isset($_POST['TDP']) && isset($_POST['SEM']) && isset($_POST['DAY']) && isset
 
 
                                                 include 'connection.php';
-                                                $sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]' and stype='$_SESSION[stype]'";
+                                                //$sql="select sname from subjects where did=(select did from department where name='$_SESSION[dept]') and semester='$_SESSION[sem]' and stype='$_SESSION[stype]'";
+                                                $sql="select sname from subjects where cno=(select cno from course where cname='$_SESSION[course]') and semester='$_SESSION[sem]' and stype='$_SESSION[stype]'";
 
                                                 $ret=pg_query($db,$sql);
                                                 if(!$ret) {

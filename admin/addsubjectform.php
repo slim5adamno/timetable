@@ -2,12 +2,12 @@
 
 include 'connection.php';
 if (isset($_POST['SC']) && isset($_POST['SN']) && isset($_POST['TNAME']) &&  isset($_POST['SEM']) && isset($_POST['COURSE']) && isset($_POST['STYPE'])) {
-    $sname = $_POST['SN'];
+    $sname =strtoupper($_POST['SN']);
     $subcode = $_POST['SC'];
-    $sem = $_POST['SEM'];
-    $course = $_POST['COURSE'];
-    $stype = $_POST['STYPE'];
-    $teacher_name = $_POST['TNAME'];
+    $sem =strtoupper($_POST['SEM']);
+    $course =strtoupper($_POST['COURSE']);
+    $stype = strtoupper($_POST['STYPE']);
+    $teacher_name =strtoupper($_POST['TNAME']);
   
 } else {
 
@@ -16,7 +16,7 @@ if (isset($_POST['SC']) && isset($_POST['SN']) && isset($_POST['TNAME']) &&  iss
 
 
   
-$sql="select did from department where name='$department'"; 
+$sql="select tid from teacher where name='$teacher_name'";
 
 
 $ret = pg_query($db, $sql);
@@ -28,7 +28,7 @@ if(!$ret) {
 }
 
 
-$sql="insert into subjects values  ('$subcode','$sname','$sem',$id[0],'$stype')";
+$sql="insert into subjects values  ('$subcode','$sname','$sem','$stype',$id[0])";
 
 
 

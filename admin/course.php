@@ -152,8 +152,9 @@ include "includes/sidebar.php";
                                     <tr>
                                         <th scope="col">Subject code</th>
                                         <th scope="col">Subject Name</th>
-                                        <th scope="col">Semester</th>
-                                        <th scope="col">Department</th>
+                                        <th scope="col">Subject Type</th>
+                                        <th scope="col">Teacher</th>
+
                                         <th scope="col">Stream</th>
                                         <th scope="col">Action</th>
                                     </tr>
@@ -170,22 +171,29 @@ include "includes/sidebar.php";
                         }
                         while ($row = pg_fetch_row($ret)) {
                            
-                                $sql="select name,stream from department where did=$row[3]";
+                                $sql="select name from teacher where tid=$row[4]";
+
 
 
                                     $return = pg_query($db, $sql);
                                     if(!$ret) {
                              echo pg_last_error($db);
                                     } else {
+
                         $id =pg_fetch_row($return);
   
                                 }
 
+
+
+
                             echo "<tr><th scope=\"row\">{$row[0]}</th>
                         <td>{$row[1]}</td>
-                        <td>{$row[2]}</td>
+                        <td>{$row[3]}</td>
                         <td>{$id[0]}</td>
-                        <td>{$id[1]}</td>
+                        <td>{$row[2]}</td>
+                        
+                        
                         " ?>
                         
                  

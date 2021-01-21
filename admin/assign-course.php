@@ -20,10 +20,10 @@ include "includes/sidebar.php";
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
-                                <li class="breadcrumb-item active">Assign Course</li>
+                                <li class="breadcrumb-item active">Assign TimeTable</li>
                             </ol>
                         </div>
-                        <h4 class="page-title">Assign Course</h4>
+                        <h4 class="page-title">Assign Timetable</h4>
                     </div>
                 </div>
             </div>     
@@ -75,6 +75,33 @@ include "includes/sidebar.php";
                                                     ?>
                                                         
                                                     </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <label>Select Course</label>
+                                                <select class="form-control" id="tdepartment" name="COURSE" required>
+                                                    <?php
+
+
+                                                    include 'connection.php';
+                                                    $sql="select cname from course";
+
+                                                    $ret=pg_query($db,$sql);
+                                                    if(!$ret) {
+                                                        echo pg_last_error($db);
+                                                        exit;
+                                                    }
+                                                    $string = '<option selected disabled>Select</option>';
+                                                    while($row = pg_fetch_row($ret)) {
+                                                        $string .='<option value="'.$row[0].'">'.$row[0].'</option>';
+                                                    }
+                                                    echo $string;
+                                                    pg_close($db);
+                                                    ?>
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-12">  

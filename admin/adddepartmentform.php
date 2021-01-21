@@ -1,7 +1,7 @@
 <?php
 
 include 'connection.php';
-error_reporting(0);
+//error_reporting(0);
 if ( !empty($_POST['DeptName']) && !empty($_POST['DeptNo']) && !empty($_POST['StreamType'])) {
     $name = strtoupper($_POST['DeptName']);
     $dno = $_POST['DeptNo'];
